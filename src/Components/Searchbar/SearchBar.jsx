@@ -1,18 +1,19 @@
-// const SearchBar = (props) => {
-    function handleSubmit(event){
-        event.preventDefault()
-        let query = document.getElementById("searchBarText").value
-        console.log(query)
-        props.parseSearch(query)
-    }
-//     return ( 
-    <div>
-    <input type="text" name="Search" id="searchBarText" onKeyUp={function(event) {if (event.key == 'Enter'){
-        handleSubmit(event)
-    }}}/>
-    <button type="submit" onClick={(event) => handleSubmit(event)}>Search</button>
-</div>
-//      );
-// }
+import React from "react";
+
+const SearchBar = (props) => {
  
-// export default SearchBar;
+
+    function handleSubmit(event){
+        event.preventDefault();
+        props.setSearch(event.target.search.value);
+        event.target.search.value = "";
+    }
+    return ( 
+        <form onSubmit = {(event) => handleSubmit (event)}>
+            <input type="text" name="Search" id="search"/> 
+            <button type="submit" >Search</button>
+        </form>
+     );
+}
+ 
+export default SearchBar;
