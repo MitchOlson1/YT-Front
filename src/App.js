@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import react, { useState, useEffect } from "react";
+
+import VideoPlayer from './Components/VideoPlayer/VideoPlayer';
+// import SearchBar from './Components/Searchbar/SearchBar';
+// import Reply from './Components/Reply/Reply';
+// import RelatedVideo from './Components/RelatedVideo/RelatedVideo';
+// import Comment from './Components/Comment/Comment';
 
 function App() {
+
+  const [videoIdentify , SetVideoIdentify] = useState("VNWN1-lv4UY")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <VideoPlayer videoId = {videoIdentify}  />
+     
+    
     </div>
   );
 }
