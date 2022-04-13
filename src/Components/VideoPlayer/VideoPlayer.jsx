@@ -21,7 +21,7 @@ const VideoPlayer = (props) => {
     //     };
     
     return ( 
-        <div>
+        <div className="p-2 flex-grow-1">
         <iframe
           id="Video"
           type="text/html"
