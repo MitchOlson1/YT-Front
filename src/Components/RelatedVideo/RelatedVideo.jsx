@@ -25,7 +25,7 @@ const RelatedVideo = (props) => {
           return (                
               <div className="m-2">
                 <form onSubmit = {(event) => handleSubmit (event)}>
-                  <input type="hidden" value={`${video.id.videoId}`} name="relatedItem" id="relatedItem" />                              
+                  <input type="hidden" name="relatedItem" id="relatedItem" value={`${video.id.videoId}`} />                              
                   <input type="image" src={`https://img.youtube.com/vi/${video.id.videoId}/0.jpg`} alt="Submit" width="200"  />
                 </form>
               </div>
