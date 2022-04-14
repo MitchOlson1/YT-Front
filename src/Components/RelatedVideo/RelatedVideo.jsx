@@ -1,15 +1,39 @@
-// const RelatedVideo = (props) => {
-//     return ( 
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-//      );
-// }
+const RelatedVideo = (props) => {
+  const [relatedVideoList, setRelatedVideoList] = useState([]);
+
+  const relatedVideos = async () => {
+    let videoList = await axios.get (`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.relatedId??"VNWN1-lv4UY"}&type=video&key=${props.apiKey}`)
+    setRelatedVideoList(videoList.data.items);
+  }
+
+  useEffect(() => {
+    relatedVideos();
+  },[props.relatedId])
+
+  function handleSubmit(event){
+    event.preventDefault();
+    props.setVideoIdentify(event.target.relatedItem.value);
+    }
+
+     return ( 
+      <div>
+      <h3>Related Vids</h3>      
+        {relatedVideoList.map((video) => {
+          return (                
+              <div className="m-2">
+                <form onSubmit = {(event) => handleSubmit (event)}>
+                  <input type="hidden" value={`${video.id.videoId}`} name="relatedItem" id="relatedItem" />                              
+                  <input type="image" src={`https://img.youtube.com/vi/${video.id.videoId}/0.jpg`} alt="Submit" width="200"  />
+                </form>
+              </div>
+            )
+          })        
+        }   
+      </div>
+      );
+ }
  
-// export default RelatedVideo;
-
-  // relatedVids = async() =>{
-        //     let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${this.props.videoId}&type=video&key=${AIzaSyBy0lgiLApihjGPQnKWwdStMMapgjRBqPI}`)
-        //     this.setState({
-        //         relatedVids: response.data.items
-        //     }),
-        //     console.log('related vids:',this.state.relatedVids)
-        // };
+ export default RelatedVideo;
