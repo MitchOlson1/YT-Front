@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 
 
     function Comment(props) {
+
         const [Comment, setComment] = useState("")
         const [allComments, setAllComments] = useState ([]);
 
@@ -27,8 +28,6 @@ import { format } from 'date-fns';
                   setAllComments (response.data);
               }
 
-
-        
         
         useEffect(() => {
             getComments();

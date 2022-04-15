@@ -5,7 +5,7 @@ import 'bootstrap'
 import axios from "axios"
 import VideoPlayer from './Components/VideoPlayer/VideoPlayer';
 import SearchBar from './Components/Searchbar/SearchBar';
-// import Reply from './Components/Reply/Reply';
+import Reply from './Components/Reply/Reply';
 import RelatedVideo from './Components/RelatedVideo/RelatedVideo';
 import Comment from './Components/Comment/Comment';
 const key = "AIzaSyCyCH_vmJmwyr4EQxD64AJ_H2w5URaImMI";
@@ -33,6 +33,7 @@ function App() {
         <div className="p-2 flex-grow-1">
           <VideoPlayer videoId={videoIdentify} /> 
           <Comment videoId = {videoIdentify} /> 
+          <Reply videoId = {videoIdentify} />
         </div>
           <RelatedVideo relatedId={videoIdentify} apiKey={key} setVideoIdentify={setVideoIdentify} />               
       </div>           
