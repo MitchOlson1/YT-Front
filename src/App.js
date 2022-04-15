@@ -8,7 +8,7 @@ import SearchBar from './Components/Searchbar/SearchBar';
 // import Reply from './Components/Reply/Reply';
 import RelatedVideo from './Components/RelatedVideo/RelatedVideo';
 import Comment from './Components/Comment/Comment';
-const key = "AIzaSyBchSSln8VLmT5e604d1EIINqmS2bxaLWM";
+const key = "AIzaSyCyCH_vmJmwyr4EQxD64AJ_H2w5URaImMI";
 
 function App() {
 
@@ -29,12 +29,13 @@ function App() {
   return (
     <div className="container">
       <SearchBar  setSearch = {setSearch}/>
-      <div className="p-2 flex-grow-1">
-        <VideoPlayer videoId={videoIdentify}  /> 
-        <Comment videoId = {videoIdentify} /> 
-        <RelatedVideo relatedId={videoIdentify} apiKey={key} setVideoIdentify={setVideoIdentify} />
-               
-      </div>      
+      <div className="d-flex">
+        <div className="p-2 flex-grow-1">
+          <VideoPlayer videoId={videoIdentify} /> 
+          <Comment videoId = {videoIdentify} /> 
+        </div>
+          <RelatedVideo relatedId={videoIdentify} apiKey={key} setVideoIdentify={setVideoIdentify} />               
+      </div>           
     </div>
   );
 }

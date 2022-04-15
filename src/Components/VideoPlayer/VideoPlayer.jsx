@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const VideoPlayer = (props) => {
   
     return ( 
-        <div className="p-2 flex-grow-1">
+        <div>
         <iframe
           id="Video"
           type="text/html"

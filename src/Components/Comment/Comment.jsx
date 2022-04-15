@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { format } from 'date-fns';
 
 
     function Comment(props) {
@@ -37,28 +38,24 @@ import axios from 'axios';
         return (
             <div>
                 <form onSubmit = {handleSubmit} >
-
                     <div>
-                        <textarea name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}>
-
-                        </textarea>
+                        <textarea name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}></textarea>
                     </div>
                     <div>
                         <input type = 'submit' value = 'Add Comment'/>
-                    </div>
-        
-                </form>
-                
-                <div className ="bg-info p5 border border-warning">
+                    </div>        
+                </form>                
+                <div className ="p-5">
+                    <ul className="list-group">
                     {allComments.map((comments) => { 
                         return (
-                                <div>
-                                    {comments.videoId}, {comments.message}, {comments.dateAdded} 
-                                </div>
-                           
-                        )
-                    }
-                    )};
+                            <li className="list-group-item mb-3">
+                                <h5>{comments.videoId} - posted {comments.dateAdded}</h5>
+                                <p>{comments.message}</p>
+                            </li>                           
+                        )}
+                    )}
+                    </ul>
                 </div>
     
             </div>

@@ -19,7 +19,7 @@ const RelatedVideo = (props) => {
     }
 
      return ( 
-      <div>
+      <div className="p-2">
       <h3>Related Vids</h3>      
         {relatedVideoList.map((video) => {
           return (                
