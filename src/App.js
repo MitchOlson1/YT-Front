@@ -7,8 +7,8 @@ import VideoPlayer from './Components/VideoPlayer/VideoPlayer';
 import SearchBar from './Components/Searchbar/SearchBar';
 // import Reply from './Components/Reply/Reply';
 import RelatedVideo from './Components/RelatedVideo/RelatedVideo';
-// import Comment from './Components/Comment/Comment';
-const key = "AIzaSyDKis6XthS9RNm1k_1PTICkuH2bDePPEjQ";
+import Comment from './Components/Comment/Comment';
+const key = "AIzaSyDP0lz6a-AIzaSyBBK93ysxlL3ez2O1InsNR3QmMOpKO4Fc0";
 
 function App() {
 
@@ -29,10 +29,11 @@ function App() {
   return (
     <div className="container">
       <SearchBar  setSearch = {setSearch}/>
-      <div className="d-flex mb-3">
-        <VideoPlayer videoId={videoIdentify}  />  
+      <div className="p-2 flex-grow-1">
+        <VideoPlayer videoId={videoIdentify}  /> 
+        <Comment videoId = {videoIdentify} /> 
         <RelatedVideo relatedId={videoIdentify} apiKey={key} setVideoIdentify={setVideoIdentify} />
-        
+               
       </div>      
     </div>
   );

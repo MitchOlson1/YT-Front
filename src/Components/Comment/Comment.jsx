@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 
-
-
-    
-
     function Comment(props) {
         const [Comment, setComment] = useState("")
+        const [allComments, setAllComments] = useState ([]);
 
           async function handleSubmit (event) {
               event.preventDefault();
@@ -18,12 +15,29 @@ import axios from 'axios';
                   "videoId": props.videoId
 
               })
-              console.log(newComment)
+              console.log(newComment);
+              getComments();
+
           }
+
+          async function getComments () {
+              let response = await axios.get(`http://localhost:3006/api/comments/${props.videoId}`) ;
+                  console.log(response.data);
+                  setAllComments (response.data);
+              }
+
+
+        
+        
+        useEffect(() => {
+            getComments();
+        },[setComment])
+    
     
         return (
             <div>
                 <form onSubmit = {handleSubmit} >
+
                     <div>
                         <textarea name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}>
 
@@ -32,9 +46,20 @@ import axios from 'axios';
                     <div>
                         <input type = 'submit' value = 'Add Comment'/>
                     </div>
-                    
-                    
+        
                 </form>
+                
+                <div className ="bg-info p5 border border-warning">
+                    {allComments.map((comments) => { 
+                        return (
+                                <div>
+                                    {comments.videoId}, {comments.message}, {comments.dateAdded} 
+                                </div>
+                           
+                        )
+                    }
+                    )};
+                </div>
     
             </div>
         )
@@ -43,6 +68,19 @@ import axios from 'axios';
  
 export default Comment; 
 
+// {/* <thead>
+// <tr>
+//     <th>Comments</th>
+// </tr>
+// </thead>
+// <button onClick={addComment}> Add Comment</button>
+// </div>
+// <div className="PostedComments">
+// {Comment.map((comment, key) => {
+//     return (
+//     <div key={key} className="comment">
+//         {comment.videoId}
+// </div> */}
 // const [comment, setComment] = useState('');
 //     const [comments,setComments] = useState ([])
     
