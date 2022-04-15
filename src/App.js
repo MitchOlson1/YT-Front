@@ -8,7 +8,7 @@ import SearchBar from './Components/Searchbar/SearchBar';
 // import Reply from './Components/Reply/Reply';
 import RelatedVideo from './Components/RelatedVideo/RelatedVideo';
 import Comment from './Components/Comment/Comment';
-const key = "AIzaSyDP0lz6a-AIzaSyBBK93ysxlL3ez2O1InsNR3QmMOpKO4Fc0";
+const key = "AIzaSyBchSSln8VLmT5e604d1EIINqmS2bxaLWM";
 
 function App() {
 

@@ -31,7 +31,7 @@ import axios from 'axios';
         
         useEffect(() => {
             getComments();
-        },[setComment])
+        },[props.videoId])
     
     
         return (
