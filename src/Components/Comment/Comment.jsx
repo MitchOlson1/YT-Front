@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { format } from 'date-fns';
+import Reply from "../Reply/Reply";
 
 
     function Comment(props) {
@@ -28,12 +29,11 @@ import { format } from 'date-fns';
                   setAllComments (response.data);
               }
 
-        
         useEffect(() => {
             getComments();
         },[props.videoId])
-    
-    
+
+       
         return (
             <div>
                 <form onSubmit = {handleSubmit} >
@@ -46,12 +46,16 @@ import { format } from 'date-fns';
                 </form>                
                 <div className ="p-5">
                     <ul className="list-group">
-                    {allComments.map((comments) => { 
+                    {allComments.map((comment) => { 
                         return (
                             <li className="list-group-item mb-3">
-                                <h5>{comments.videoId} - posted {comments.dateAdded}</h5>
-                                <p>{comments.message}</p>
-                            </li>                           
+                                <h5>{comment.videoId} - posted {comment.dateAdded}</h5>
+                                <p>{comment.message}</p>
+                                <Reply commentId = {comment._id} replies = {comment.replies} getComments = {getComments}/>
+
+                            </li> 
+                            
+                                                      
                         )}
                     )}
                     </ul>

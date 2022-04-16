@@ -2,40 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 const Reply = (props) => {
-    const [reply, setReply] = useState();
-    const [allReplies, setAllReplies] = useState([]);
 
 
     async function handleSubmit (event) {
         event.preventDefault();
-        console.log(reply, props.videoId)
-      let newReply = await axios.post(`http://localhost:3006/api/comments/`, {
+      let newReply = await axios.put(`http://localhost:3006/api/comments/${props.commentId}/replies`, {
 
-            "message": reply,
-            "videoId": props.videoId
+            "message": event.target.reply.value
 
+           
         })
         console.log(newReply);
-        getReply();
-
+        props.getComments();
+       
     }
 
-    async function getReply () {
-        let response = await axios.put(`http://localhost:3006/api/comments/${props.videoId}`) ;
-            console.log(response.data);
-            setAllReplies (response.data);
-        }
-
-
         useEffect(() => {
-            getReply();
-        },[props.videoId])
+            handleSubmit();
+        },[props.commentId])
 
     return ( 
         <div>
         <form onSubmit = {handleSubmit} >
             <div>
-                <textarea name = 'reply' id = 'reply' value = {reply} onChange = {(event) => setReply(event.target.value)}></textarea>
+                <textarea name = 'reply' id = 'reply'></textarea>
             </div>
             <div>
                 <input type = 'submit' value = 'Add reply'/>
@@ -43,11 +33,10 @@ const Reply = (props) => {
         </form>                
         <div className ="p-5">
             <ul className="list-group">
-            {allReplies.map((replies) => { 
+            {props.replies.map((reply) => { 
                 return (
                     <li className="list-group-item mb-3">
-                        <h5>{replies.videoId} - posted {replies.dateAdded}</h5>
-                        <p>{replies.message}</p>
+                        <p>{reply.message}</p>
                     </li>                           
                 )}
             )}
