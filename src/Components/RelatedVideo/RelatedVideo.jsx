@@ -5,7 +5,7 @@ const RelatedVideo = (props) => {
   const [relatedVideoList, setRelatedVideoList] = useState([]);
 
   const relatedVideos = async () => {
-    let videoList = await axios.get (`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.relatedId??"VNWN1-lv4UY"}&type=video&key=${props.apiKey}`)
+    let videoList = await axios.get (`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.relatedId??"VNWN1-lv4UY"}&part=snippet&type=video&key=${props.apiKey}`)
     setRelatedVideoList(videoList.data.items);
   }
 
@@ -15,7 +15,7 @@ const RelatedVideo = (props) => {
 
   function handleSubmit(event){
     event.preventDefault();
-    props.setVideoIdentify(event.target.relatedItem.value);
+    props.setVideoIdentify(event.target.relatedItem.value);    
     }
 
      return ( 
@@ -27,7 +27,7 @@ const RelatedVideo = (props) => {
                 <form onSubmit = {(event) => handleSubmit (event)}>
                   <input type="hidden" name="relatedItem" id="relatedItem" value={`${video.id.videoId}`} />                              
                   <input type="image" src={`https://img.youtube.com/vi/${video.id.videoId}/0.jpg`} alt="Submit" width="200"  />
-                </form>
+                </form>                 
               </div>
             )
           })        

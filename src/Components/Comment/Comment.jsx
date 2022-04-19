@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { format } from 'date-fns';
 import Reply from "../Reply/Reply";
 import LikeDislike from "../LikesDislikes/LikesDislikes";
 
@@ -28,9 +27,13 @@ import LikeDislike from "../LikesDislikes/LikesDislikes";
        
         return (
             <div>
+                <div>
+                   <h5>{props.vidTitle}</h5>
+                   <p>{props.vidDesc}</p>
+                </div>
                 <form onSubmit = {handleSubmit} >
                     <div>
-                        <textarea name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}></textarea>
+                        <textarea className="w-100 mt-2" name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}></textarea>
                     </div>
                     <div>
                         <input type = 'submit' value = 'Add Comment'/>
@@ -40,8 +43,8 @@ import LikeDislike from "../LikesDislikes/LikesDislikes";
                     <ul className="list-group">
                     {allComments.map((comment) => { 
                         return (
-                            <li className="list-group-item mb-3">
-                                <h5>{comment.videoId} - posted {comment.dateAdded}</h5>
+                            <li className="list-group-item mb-3 ml-0">
+                                <h5>Posted {comment.dateAdded}</h5>
                                 <p>{comment.message}</p>
                                 <LikeDislike commentId = {comment._id} likes={comment.likes} dislikes={comment.dislikes} getComments = {getComments} />
                                 <Reply commentId = {comment._id} replies = {comment.replies} getComments = {getComments}/>                                

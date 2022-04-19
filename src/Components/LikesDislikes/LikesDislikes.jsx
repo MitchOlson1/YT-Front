@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 const LikeDislike = (props) => {
-  const [addLikes, setAddLikes] = useState("");
-  const [addDislikes, setAddDislikes] = useState("");
-
   async function handleLikes(event){
     event.preventDefault();
     let newLike = await axios.put(`http://localhost:3006/api/comments/${props.commentId}/likes`)
