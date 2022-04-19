@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Reply from "../Reply/Reply";
 import LikeDislike from "../LikesDislikes/LikesDislikes";
+import './Comment.css'
 
     function Comment(props) {
         const [Comment, setComment] = useState("")
@@ -14,6 +15,7 @@ import LikeDislike from "../LikesDislikes/LikesDislikes";
                   "videoId": props.videoId
               })
               console.log(newComment);
+              setComment("");
               getComments();
             }
           async function getComments () {
@@ -28,32 +30,36 @@ import LikeDislike from "../LikesDislikes/LikesDislikes";
         return (
             <div>
                 <div>
-                   <h5>{props.vidTitle}</h5>
-                   <p>{props.vidDesc}</p>
+                   <h4>{props.vidTitle}</h4>
+                   <h5 data-bs-toggle="collapse" data-bs-target="#videoDescription">Description (click to read)</h5>
+                   <div id="videoDescription" class="collapse">{props.vidDesc}</div>
                 </div>
-                <form onSubmit = {handleSubmit} >
+                <form id="commentform" onSubmit = {handleSubmit} >
                     <div>
-                        <textarea className="w-100 mt-2" name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}></textarea>
+                        <label><h5>Comment:</h5></label>
+                        <textarea className="form-control w-100 mt-2 mb-2" name = 'comment' id = 'comment' value = {Comment} onChange = {(event) => setComment(event.target.value)}></textarea>
                     </div>
                     <div>
-                        <input type = 'submit' value = 'Add Comment'/>
+                        <input className="btn btn-info" type = 'submit' value = 'Add Comment'/>
                     </div>        
-                </form>                
-                <div className ="p-5">
-                    <ul className="list-group">
+                </form>   
+                <hr />             
+                <div className ="w-100 mt-3">
+                    <h3 className="text-center">Comments/Replies</h3>
                     {allComments.map((comment) => { 
                         return (
-                            <li className="list-group-item mb-3 ml-0">
-                                <h5>Posted {comment.dateAdded}</h5>
-                                <p>{comment.message}</p>
-                                <LikeDislike commentId = {comment._id} likes={comment.likes} dislikes={comment.dislikes} getComments = {getComments} />
+                            <div className="list-group-item mb-3 ml-0 w-100 p-0">
+                                <div className="d-flex bg-primary text-white p-2">
+                                    <h5 className="w-75">Posted {comment.dateAdded}</h5>
+                                    <LikeDislike commentId = {comment._id} likes={comment.likes} dislikes={comment.dislikes} getComments = {getComments} />
+                                </div>
+                                <p className="msgtxt p-3">{comment.message}</p>                                
                                 <Reply commentId = {comment._id} replies = {comment.replies} getComments = {getComments}/>                                
-                            </li>                
+                            </div>                
                         )}
                     )}
-                    </ul>
                 </div>    
-            </div>
+            </div>  
         )
     }    
  

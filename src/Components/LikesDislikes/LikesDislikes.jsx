@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from 'axios';
+import "./LikesDislikes.css"
 
 const LikeDislike = (props) => {
   async function handleLikes(event){
@@ -26,17 +27,15 @@ const LikeDislike = (props) => {
     <div className="rate_post text-end"> 
       <div className="d-flex">                 
         <div className="mr-3">
-          Likes: {props.likes} 
           <form onSubmit = {handleLikes} >
             <input type="hidden" value="like" name="like" id="like" />
-            <input type = 'submit' value = 'Add Like'/>
+            <button type = "submit" class="bg-success m-3 text-white">Like {props.likes}</button>
           </form>
         </div>
-        <div className="ml-3">
-          Dislikes: {props.dislikes} 
-          <form onSubmit = {handleDislikes} >
+        <div className="ml-3">          
+          <form id="likes" onSubmit = {handleDislikes} >
             <input type="hidden" value="dislike" name="dislike" id="dislike" />
-            <input type = 'submit' value = 'Add Dislike'/>
+            <button type = "submit" class="bg-danger m-3 text-white">Dislike {props.dislikes}</button>
           </form>    
         </div>
       </div>

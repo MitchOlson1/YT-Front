@@ -19,14 +19,14 @@ const RelatedVideo = (props) => {
     }
 
      return ( 
-      <div className="p-2">
-      <h3>Related Vids</h3>      
+      <div className="p-2 mt-3 text-center border-start border-dark w-25">
+      <h3 className="mt-0">Related Vids</h3>      
         {relatedVideoList.map((video) => {
           return (                
-              <div className="m-2">
+              <div className="m-2 w-100">
                 <form onSubmit = {(event) => handleSubmit (event)}>
                   <input type="hidden" name="relatedItem" id="relatedItem" value={`${video.id.videoId}`} />                              
-                  <input type="image" src={`https://img.youtube.com/vi/${video.id.videoId}/0.jpg`} alt="Submit" width="200"  />
+                  <input type="image" className="w-100" src={`https://img.youtube.com/vi/${video.id.videoId}/0.jpg`} alt="Submit" />
                 </form>                 
               </div>
             )

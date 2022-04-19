@@ -1,4 +1,5 @@
 import React from "react";
+import './SearchBar.css'
 
 const SearchBar = (props) => {
     
@@ -8,10 +9,14 @@ const SearchBar = (props) => {
         event.target.search.value = "";
     }
     return ( 
-        <form onSubmit = {(event) => handleSubmit (event)}>
-            <input type="text" name="Search" id="search"/> 
-            <button type="submit" >Search</button>
-        </form>
+        <div className="w-100">
+            <form id="searchbar" onSubmit = {(event) => handleSubmit (event)}>
+                <div class="input-group input-group-lg mt-2 mb-3 w-100">
+                    <input type="text" class="form-control w-100" placeholder="Search" name="Search" id="search"/> 
+                    <button class="btn btn-success" type="submit" >Search</button>
+                </div>
+            </form>
+        </div>
      );
 }
  
