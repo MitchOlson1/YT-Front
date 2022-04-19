@@ -1,4 +1,3 @@
-    
 import './App.css';
 import  { useState, useEffect } from "react";
 import 'bootstrap'
@@ -7,7 +6,8 @@ import VideoPlayer from './Components/VideoPlayer/VideoPlayer';
 import SearchBar from './Components/Searchbar/SearchBar';
 import RelatedVideo from './Components/RelatedVideo/RelatedVideo';
 import Comment from './Components/Comment/Comment';
-const key = "AIzaSyDmPzx4s6jBeg03kBOff_HDx8spE7503Ac";
+//Add API Key here
+const key = "";
 
 function App() {
   const [videoIdentify, setVideoIdentify] = useState("VNWN1-lv4UY");

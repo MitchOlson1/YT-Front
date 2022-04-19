@@ -17,7 +17,6 @@ const RelatedVideo = (props) => {
     event.preventDefault();
     props.setVideoIdentify(event.target.relatedItem.value);    
     }
-
      return ( 
       <div className="p-2 mt-3 text-center border-start border-dark w-25">
       <h3 className="mt-0">Related Vids</h3>      
